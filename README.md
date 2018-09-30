@@ -1,4 +1,4 @@
-#Arcade Game Project
+# Arcade Game Project
 
 Welcome to the Arcade Game, a browser-based game that'll test your motor skills in the most elementary way possible. Ever play leap frog? Yeah. 
 
@@ -6,10 +6,10 @@ _This project was done as a requirement for [Udacity's Front-End Web Development
 
 ## Table of Contents
 
-* [Game Play] (#play)
-* [Dependencies] (#dependencies)
-* [Resources] (#resources)
-* [Contributing] (#contributing})
+* [Game Play](#play)
+* [Dependencies](#dependencies)
+* [Resources](#resources)
+* [Contributing](#contributing)
 
 ## Play
 Download the files into a local directory and open the `index.html` in a web browser of your choice.
