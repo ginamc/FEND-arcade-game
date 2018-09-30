@@ -1,0 +1,58 @@
+body {
+    text-align: center;
+}
+
+
+/* addin the modal on game win, replay */
+
+.modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: lightslategray;
+}
+
+.modal-body {
+    position: relative;
+    transform: translate(-50%, -70%);
+    width: 500px;
+    /* height: 500px; removed set height */
+    top: 50%;
+    left: 50%;
+    background: white;
+}
+
+.modal-message {
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+    font-size: 2rem;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 1.5rem;
+    /* border-bottom: 1px solid blue; remove title border */
+}
+
+
+/* deleted 'x' option in modal
+.modal-close {
+    font-weight: bold;
+    font-size: 2rem;
+} */
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 1.5rem 0.75rem;
+}
+
+.modal-button {
+    width: 80px;
+    height: 50px;
+}
+
+.hide {
+    display: none;
+}
