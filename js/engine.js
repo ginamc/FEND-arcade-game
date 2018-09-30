@@ -57,14 +57,7 @@ var Engine = (function(global) {
         lastTime = now;
 
 
-        replay.addEventListener('click', event => {
-            const clickTarget = event.target;
-            modal.classList.toggle('hide');
-            player.reset();
-            player.victory = false;
-            win.requestAnimationFrame(main);
-
-        });
+        // replay event listern was here
 
         if (player.victory === true) {
             win.cancelAnimationFrame(id);
@@ -174,7 +167,16 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        replay.addEventListener('click', event => {
+            const clickTarget = event.target;
+            modal.classList.toggle('hide');
+            player.reset();
+            player.victory = false;
+            win.requestAnimationFrame(main);
+        });
     }
+
+
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
