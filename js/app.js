@@ -3,7 +3,7 @@ var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y + 55; //centering the enemy along the y axis
-    this.speed = speed // control how fast enemies move
+    this.speed = speed; // control how fast enemies move
     this.step = 101;
     this.boundary = this.step * 5;
     this.resetPos = -this.step;
@@ -27,63 +27,69 @@ Enemy.prototype.render = function() {
 };
 
 
-class Player {
-    constructor() {
-        this.sprite = 'images/char-boy.png';
-        this.step = 101; //distance block to block on x axis
-        this.jump = 83; // distance block block on y axis
-        this.startX = this.step * 2; // 2 blocks to right on x axis
-        this.startY = (this.jump * 4) + 55; // 5 blocks down from top row with padding to centralize player, padding is same as enemy axis
-        this.x = this.startX;
-        this.y = this.startY;
-        this.victory = false;
-    }
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
-    handleInput(input) {
-        switch (input) {
-            case 'left':
-                if (this.x > 0) {
-                    this.x -= this.step;
-                }
-                break;
-            case 'up':
-                if (this.y > this.jump) {
-                    this.y -= this.jump;
-                }
-                break;
-            case 'right':
-                if (this.x < this.step * 4) {
-                    this.x += this.step;
-                }
-                break;
-            case 'down':
-                if (this.y < this.jump * 4) {
-                    this.y += this.jump;
-                    break;
-                }
-        }
+var Player = function(x, y, speed) {
+    this.sprite = 'images/char-boy.png';
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+    this.step = 101; //distance block to block on x axis
+    this.jump = 83; // distance block block on y axis
+    this.startX = this.step * 2; // 2 blocks to right on x axis
+    this.startY = (this.jump * 4) + 55; // 5 blocks down from top row with padding to centralize player, padding is same as enemy axis
+    this.x = this.startX;
+    this.y = this.startY;
+    this.victory = false;
 
-    }
+};
 
-    update() {
-        //check collision - did player collid with enemy?
-        for (let enemy of allEnemies) {
-            if (this.y === enemy.y && (enemy.x + enemy.step / 2 > this.x && enemy.x < this.x + this.step / 2)) { // reducing the collision distance by half
-                this.reset();
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.handleInput = function(keyEnter) {
+    switch (keyEnter) {
+        case 'left':
+            if (this.x > 0) {
+                this.x -= this.step;
             }
-        }
-        // check win - did player make it to the water tile?
-        if (this.y === 55) {
-            this.victory = true;
-        }
+            break;
+        case 'up':
+            if (this.y > this.jump) {
+                this.y -= this.jump;
+            }
+            break;
+        case 'right':
+            if (this.x < this.step * 4) {
+                this.x += this.step;
+            }
+            break;
+        case 'down':
+            if (this.y < this.jump * 4) {
+                this.y += this.jump;
+                break;
+            }
     }
 
-    reset() {
-        this.y = this.startY;
-        this.x = this.startX;
+}
+
+Player.prototype.update = function() {
+    //check collision - did player collid with enemy?
+    for (let enemy of allEnemies) {
+        if (this.y === enemy.y &&
+            (enemy.x + enemy.step / 2 > this.x &&
+                enemy.x < this.x + this.step / 2)) { // reducing the collision distance by half
+            this.reset();
+        }
     }
+    // check win - did player make it to the water tile?
+    if (this.y === 55) {
+        this.victory = true;
+    }
+}
+
+Player.prototype.reset = function() {
+    this.y = this.startY;
+    this.x = this.startX;
 }
 
 const player = new Player();
